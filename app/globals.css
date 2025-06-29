@@ -1,6 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 :root {
   --foreground-rgb: 0, 0, 0;
@@ -16,11 +14,8 @@
   }
 }
 
-html, body {
-  background-color: #121212 !important;
-  color: #fff;
-}
-
+/* Removed conflicting CSS rules that were overriding Tailwind classes */
 body {
+  background-color: #121212;
   color: #fff;
 }
