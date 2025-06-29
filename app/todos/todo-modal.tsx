@@ -58,7 +58,7 @@ const TodoModal: React.FC<TodoModalProps> = ({
     setSelectedTags(prev => {
       const normalizedTagId = tagId.toLowerCase();
       const isAlreadySelected = prev.some(tag => tag.toLowerCase() === normalizedTagId);
-      
+
       if (isAlreadySelected) {
         return prev.filter(tag => tag.toLowerCase() !== normalizedTagId);
       } else {
@@ -145,4 +145,4 @@ const TodoModal: React.FC<TodoModalProps> = ({
   );
 };
 
-export default TodoModal; 
+export default TodoModal;

@@ -31,14 +31,13 @@ const TodosPage = () => {
 
   const handleAddTag = () => {
     // TODO: Implement add tag functionality
-    console.log('Add tag clicked');
   };
 
   return (
     <div className="flex-1 min-h-screen bg-[#121212] text-white p-8">
       <div className="max-w-7xl mx-auto">
         <h1 className="text-5xl font-bold mb-8">{UI_TEXT.TODO_APP}</h1>
-        
+
         {/* Input Section */}
         <TodoInput
           onAddTodo={addTodo}

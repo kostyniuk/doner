@@ -59,4 +59,4 @@ const Todo: React.FC<TodoProps> = ({ todo, tags, onMoveTodo, getNextStatus, onEd
   );
 };
 
-export default Todo; 
+export default Todo;

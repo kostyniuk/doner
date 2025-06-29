@@ -19,7 +19,7 @@ const Input: React.FC<InputProps> = ({
   type = 'text',
   disabled = false,
   className = '',
-  onKeyPress
+  onKeyPress,
 }) => {
   return (
     <div className={className}>
@@ -41,4 +41,4 @@ const Input: React.FC<InputProps> = ({
   );
 };
 
-export default Input; 
+export default Input;

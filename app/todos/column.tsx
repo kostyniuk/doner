@@ -13,14 +13,14 @@ interface ColumnProps {
   onEdit: (todo: TodoType) => void;
 }
 
-const Column: React.FC<ColumnProps> = ({ 
-  columnTodos, 
-  columnColor, 
-  columnTitle, 
-  tags, 
-  onMoveTodo, 
+const Column: React.FC<ColumnProps> = ({
+  columnTodos,
+  columnColor,
+  columnTitle,
+  tags,
+  onMoveTodo,
   getNextStatus,
-  onEdit
+  onEdit,
 }) => {
   return (
     <div

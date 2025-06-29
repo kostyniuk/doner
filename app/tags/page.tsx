@@ -17,7 +17,7 @@ const TagsPage = () => {
     { id: 3, name: 'Urgent', color: 'bg-red-500', count: 1 },
     { id: 4, name: 'Ideas', color: 'bg-purple-500', count: 4 },
   ]);
-  
+
   const [newTagName, setNewTagName] = useState('');
   const [selectedColor, setSelectedColor] = useState('bg-blue-500');
   const [isAdding, setIsAdding] = useState(false);
@@ -91,7 +91,7 @@ const TagsPage = () => {
                     autoFocus
                   />
                 </div>
-                
+
                 <div className="space-y-2">
                   <label className="text-sm text-gray-400">Choose color:</label>
                   <div className="flex gap-2">
@@ -187,4 +187,4 @@ const TagsPage = () => {
   );
 };
 
-export default TagsPage; 
+export default TagsPage;

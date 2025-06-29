@@ -18,8 +18,8 @@ export const useTodos = (initialTodos: Todo[] = []) => {
   const updateTodo = (todoId: number, updates: Partial<Todo>) => {
     setTodos(prev =>
       prev.map(todo =>
-        todo.id === todoId ? { ...todo, ...updates } : todo
-      )
+        todo.id === todoId ? { ...todo, ...updates } : todo,
+      ),
     );
   };
 
@@ -30,8 +30,8 @@ export const useTodos = (initialTodos: Todo[] = []) => {
   const moveTodo = (todoId: number, newStatus: Todo['status']) => {
     setTodos(prev =>
       prev.map(todo =>
-        todo.id === todoId ? { ...todo, status: newStatus } : todo
-      )
+        todo.id === todoId ? { ...todo, status: newStatus } : todo,
+      ),
     );
   };
 
@@ -42,4 +42,4 @@ export const useTodos = (initialTodos: Todo[] = []) => {
     deleteTodo,
     moveTodo,
   };
-}; 
+};

@@ -11,15 +11,15 @@ interface TagProps {
   className?: string;
 }
 
-const Tag: React.FC<TagProps> = ({ 
-  id, 
-  name, 
-  color, 
-  count, 
+const Tag: React.FC<TagProps> = ({
+  id,
+  name,
+  color,
+  count,
   variant = 'chip',
   onDelete,
   onClick,
-  className = ''
+  className = '',
 }) => {
   if (variant === 'chip') {
     return (
@@ -40,7 +40,7 @@ const Tag: React.FC<TagProps> = ({
       >
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-3">
-            <div className={`w-4 h-4 rounded-full ${color}`}></div>
+            <div className={`w-4 h-4 rounded-full ${color}`} />
             <h3 className="font-semibold text-white">{name}</h3>
           </div>
           {onDelete && (
@@ -57,7 +57,7 @@ const Tag: React.FC<TagProps> = ({
             </button>
           )}
         </div>
-        
+
         {count !== undefined && (
           <div className="text-gray-400 text-sm">
             {count} {count === 1 ? 'task' : 'tasks'}
@@ -68,10 +68,10 @@ const Tag: React.FC<TagProps> = ({
           <div className="mt-4">
             <div className="flex items-center gap-2 text-xs text-gray-500">
               <div className="w-full bg-gray-700 rounded-full h-1">
-                <div 
+                <div
                   className={`h-1 rounded-full ${color}`}
                   style={{ width: `${Math.min((count / 5) * 100, 100)}%` }}
-                ></div>
+                />
               </div>
             </div>
           </div>
@@ -83,4 +83,4 @@ const Tag: React.FC<TagProps> = ({
   return null;
 };
 
-export default Tag; 
+export default Tag;

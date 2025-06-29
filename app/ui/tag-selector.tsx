@@ -14,11 +14,11 @@ const TagSelector: React.FC<TagSelectorProps> = ({
   selectedTags,
   onTagToggle,
   label,
-  className = ''
+  className = '',
 }) => {
   const isTagSelected = (tagId: string) => {
-    return selectedTags.some(selectedTag => 
-      selectedTag.toLowerCase() === tagId.toLowerCase()
+    return selectedTags.some(selectedTag =>
+      selectedTag.toLowerCase() === tagId.toLowerCase(),
     );
   };
 
@@ -33,7 +33,7 @@ const TagSelector: React.FC<TagSelectorProps> = ({
         return { backgroundColor: 'rgba(168, 85, 247, 0.2)', color: '#a78bfa' };
       }
     }
-    
+
     return { backgroundColor: '#2a2a2a', color: '#9ca3af' };
   };
 
@@ -45,7 +45,7 @@ const TagSelector: React.FC<TagSelectorProps> = ({
     } else if (tag.color === 'bg-purple-500/20 text-purple-400') {
       return { backgroundColor: 'rgba(168, 85, 247, 0.2)', color: '#a78bfa' };
     }
-    
+
     return { backgroundColor: '#2a2a2a', color: '#9ca3af' };
   };
 
@@ -85,4 +85,4 @@ const TagSelector: React.FC<TagSelectorProps> = ({
   );
 };
 
-export default TagSelector; 
+export default TagSelector;

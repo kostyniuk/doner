@@ -28,14 +28,14 @@ export const getColumnTitle = (status: TodoStatus) => {
 
 export const getNextStatus = (currentStatus: TodoStatus): TodoStatus => {
   switch (currentStatus) {
-    case TODO_STATUSES.BACKLOG:
-      return TODO_STATUSES.IN_PROGRESS;
-    case TODO_STATUSES.IN_PROGRESS:
-      return TODO_STATUSES.DONE;
-    case TODO_STATUSES.DONE:
-      return TODO_STATUSES.BACKLOG;
-    default:
-      return TODO_STATUSES.BACKLOG;
+  case TODO_STATUSES.BACKLOG:
+    return TODO_STATUSES.IN_PROGRESS;
+  case TODO_STATUSES.IN_PROGRESS:
+    return TODO_STATUSES.DONE;
+  case TODO_STATUSES.DONE:
+    return TODO_STATUSES.BACKLOG;
+  default:
+    return TODO_STATUSES.BACKLOG;
   }
 };
 
@@ -49,4 +49,4 @@ export const getPriorityColor = (priority: Priority) => {
 
 export const getPriorityBgColor = (priority: Priority) => {
   return PRIORITY_CONFIGS[priority]?.bgColor || '';
-}; 
+};

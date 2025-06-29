@@ -125,4 +125,4 @@ export const BUTTON_SIZES = {
   SM: 'sm',
   MD: 'md',
   LG: 'lg',
-} as const; 
+} as const;

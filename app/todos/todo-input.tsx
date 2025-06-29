@@ -33,7 +33,7 @@ const TodoInput: React.FC<TodoInputProps> = ({ onAddTodo, tags, className = '' }
     setSelectedTag(prev =>
       prev.includes(tagId)
         ? prev.filter(id => id !== tagId)
-        : [tagId] // Only allow one tag for new todos
+        : [tagId], // Only allow one tag for new todos
     );
   };
 
@@ -74,4 +74,4 @@ const TodoInput: React.FC<TodoInputProps> = ({ onAddTodo, tags, className = '' }
   );
 };
 
-export default TodoInput; 
+export default TodoInput;

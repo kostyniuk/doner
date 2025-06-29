@@ -10,10 +10,10 @@ interface TagsSectionProps {
   className?: string;
 }
 
-const TagsSection: React.FC<TagsSectionProps> = ({ 
-  tags, 
-  onAddTag, 
-  className = '' 
+const TagsSection: React.FC<TagsSectionProps> = ({
+  tags,
+  onAddTag,
+  className = '',
 }) => {
   return (
     <div className={`mt-12 ${className}`}>
@@ -43,4 +43,4 @@ const TagsSection: React.FC<TagsSectionProps> = ({
   );
 };
 
-export default TagsSection; 
+export default TagsSection;
