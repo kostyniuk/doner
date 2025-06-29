@@ -4,11 +4,10 @@ import React from 'react';
 import Column from './column';
 import TodoModal from './todo-modal';
 import TodoInput from './todo-input';
-import TagsSection from './tags-section';
 import { useTodos } from './use-todos';
 import { useModal } from './use-modal';
 import { Tag as TagType, getColumnTodos, getColumnColor, getColumnTitle, getNextStatus } from './helper';
-import { TODO_STATUSES, TAG_CONFIGS, UI_TEXT, PRIORITIES } from './constants';
+import { TODO_STATUSES, TAG_CONFIGS, PRIORITIES } from './constants';
 
 const initialTodos = [
   { id: 1, text: 'Design database schema', status: TODO_STATUSES.BACKLOG, priority: PRIORITIES.HIGH, tags: [TAG_CONFIGS.documentation.id] },
@@ -29,15 +28,9 @@ const TodosPage = () => {
 
   const statuses = Object.values(TODO_STATUSES);
 
-  const handleAddTag = () => {
-    // TODO: Implement add tag functionality
-  };
-
   return (
     <div className="flex-1 min-h-screen bg-[#121212] text-white p-8">
-      <div className="max-w-7xl mx-auto">
-        <h1 className="text-5xl font-bold mb-8">{UI_TEXT.TODO_APP}</h1>
-
+      <div className="max-w-7xl mx-auto mt-15">
         {/* Input Section */}
         <TodoInput
           onAddTodo={addTodo}

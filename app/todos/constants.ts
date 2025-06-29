@@ -16,7 +16,7 @@ export const TODO_STATUS_DISPLAY_NAMES = {
 
 // Todo status colors for columns
 export const TODO_STATUS_COLORS = {
-  [TODO_STATUSES.BACKLOG]: 'border-t-blue-500',
+  [TODO_STATUSES.BACKLOG]: 'border-t-gray-500',
   [TODO_STATUSES.IN_PROGRESS]: 'border-t-yellow-500',
   [TODO_STATUSES.DONE]: 'border-t-green-500',
 } as const;

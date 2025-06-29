@@ -118,28 +118,28 @@ const TodoInput: React.FC<TodoInputProps> = ({ onAddTodo, tags, className = '' }
           label={UI_TEXT.ADD_TAG_OPTIONAL}
         />
         <div className="ml-2 mt-6">
-        {showNewTagInput ? (
-          <Input
-            value={newTagValue}
-            onChange={setNewTagValue}
-            onKeyPress={e => {
-              if (e.key === 'Enter') handleAddNewTag();
-            }}
-            placeholder="New tag name"
-            className="w-32 text-sm"
-            noBorder={true}
-            bgClassName="bg-[#1f1f1f]"
-          />
-        ) : (
-          <Button
-            onClick={() => setShowNewTagInput(true)}
-            variant={BUTTON_VARIANTS.GHOST}
-            size={BUTTON_SIZES.SM}
-            className="px-3 py-1 rounded-full text-sm cursor-pointer text-[#9ca3af] bg-[#2a2a2a] hover:bg-[#3a3a3a]"
-          >
-            <span className="text-2xl leading-none">+</span>
-          </Button>
-        )}
+          {showNewTagInput ? (
+            <Input
+              value={newTagValue}
+              onChange={setNewTagValue}
+              onKeyPress={e => {
+                if (e.key === 'Enter') handleAddNewTag();
+              }}
+              placeholder="New tag name"
+              className="w-32 text-sm"
+              noBorder={true}
+              bgClassName="bg-[#1f1f1f]"
+            />
+          ) : (
+            <Button
+              onClick={() => setShowNewTagInput(true)}
+              variant={BUTTON_VARIANTS.GHOST}
+              size={BUTTON_SIZES.SM}
+              className="px-3 py-1 rounded-full text-sm cursor-pointer text-[#9ca3af] bg-[#2a2a2a] hover:bg-[#3a3a3a]"
+            >
+              <span className="text-2xl leading-none">+</span>
+            </Button>
+          )}
         </div>
       </div>
     </div>
