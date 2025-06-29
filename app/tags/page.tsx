@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import Tag from '@/app/tag/tag';
+import Tag from '@/app/tags/tag';
 
 interface Tag {
   id: number;

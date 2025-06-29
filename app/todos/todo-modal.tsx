@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Todo as TodoType, Tag as TagType } from './helper';
-import Modal from '../ui/modal';
-import Button from '../ui/button';
-import Input from '../ui/input';
-import TagSelector from '../ui/tag-selector';
-import PrioritySelector from '../ui/priority-selector';
-import { TODO_STATUS_DISPLAY_NAMES, UI_TEXT, BUTTON_VARIANTS, Priority } from './constants';
+import { Todo as TodoType, Tag as TagType } from '@/app/todos/helper';
+import Modal from '@/app/ui/modal';
+import Button from '@/app/ui/button';
+import Input from '@/app/ui/input';
+import TagSelector from '@/app/ui/tag-selector';
+import PrioritySelector from '@/app/ui/priority-selector';
+import { TODO_STATUS_DISPLAY_NAMES, UI_TEXT, BUTTON_VARIANTS, Priority } from '@/app/todos/constants';
 
 interface TodoModalProps {
   todo: TodoType | null;

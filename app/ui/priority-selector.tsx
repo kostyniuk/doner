@@ -1,5 +1,5 @@
 import React from 'react';
-import { Priority, PRIORITY_CONFIGS, UI_TEXT } from '../todos/constants';
+import { Priority, PRIORITY_CONFIGS, UI_TEXT } from '@/app/todos/constants';
 
 interface PrioritySelectorProps {
   selectedPriority?: Priority;
@@ -14,6 +14,48 @@ const PrioritySelector: React.FC<PrioritySelectorProps> = ({
   label,
   className = ''
 }) => {
+  const getPriorityStyles = (priority: typeof PRIORITY_CONFIGS[keyof typeof PRIORITY_CONFIGS]) => {
+    const isSelected = selectedPriority === priority.id;
+    if (isSelected) {
+      return {
+        backgroundColor: priority.bgColor === 'bg-green-400/10' ? 'rgba(74, 222, 128, 0.1)' :
+                        priority.bgColor === 'bg-blue-400/10' ? 'rgba(96, 165, 250, 0.1)' :
+                        priority.bgColor === 'bg-orange-400/10' ? 'rgba(251, 146, 60, 0.1)' :
+                        priority.bgColor === 'bg-red-400/10' ? 'rgba(248, 113, 113, 0.1)' : '#2a2a2a',
+        borderColor: priority.color === 'border-l-green-400' ? '#4ade80' :
+                    priority.color === 'border-l-blue-400' ? '#60a5fa' :
+                    priority.color === 'border-l-orange-400' ? '#fb923c' :
+                    priority.color === 'border-l-red-400' ? '#f87171' : 'transparent',
+        borderWidth: '2px',
+        color: 'white',
+        transition: 'none',
+      };
+    }
+    return {
+      backgroundColor: '#2a2a2a',
+      borderColor: 'transparent',
+      borderWidth: '1px',
+      color: '#9ca3af',
+      transition: 'none',
+    };
+  };
+
+  const getHoverStyles = (priority: typeof PRIORITY_CONFIGS[keyof typeof PRIORITY_CONFIGS]) => {
+    return {
+      backgroundColor: priority.bgColor === 'bg-green-400/10' ? 'rgba(74, 222, 128, 0.1)' :
+                      priority.bgColor === 'bg-blue-400/10' ? 'rgba(96, 165, 250, 0.1)' :
+                      priority.bgColor === 'bg-orange-400/10' ? 'rgba(251, 146, 60, 0.1)' :
+                      priority.bgColor === 'bg-red-400/10' ? 'rgba(248, 113, 113, 0.1)' : '#2a2a2a',
+      borderColor: priority.color === 'border-l-green-400' ? '#4ade80' :
+                  priority.color === 'border-l-blue-400' ? '#60a5fa' :
+                  priority.color === 'border-l-orange-400' ? '#fb923c' :
+                  priority.color === 'border-l-red-400' ? '#f87171' : 'transparent',
+      borderWidth: '2px',
+      color: 'white',
+      transition: 'none',
+    };
+  };
+
   return (
     <div className={className}>
       {label && (
@@ -28,15 +70,19 @@ const PrioritySelector: React.FC<PrioritySelectorProps> = ({
             <button
               key={priority.id}
               onClick={() => onPriorityChange(priority.id)}
-              className={`
-                flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-colors
-                ${isSelected 
-                  ? `${priority.bgColor} ${priority.color.replace('border-l-', 'border-')} border-2` 
-                  : 'bg-[#2a2a2a] text-gray-400 hover:text-white hover:bg-[#3a3a3a]'
+              style={getPriorityStyles(priority)}
+              onMouseEnter={(e) => {
+                if (!isSelected) {
+                  Object.assign(e.currentTarget.style, getHoverStyles(priority));
                 }
-              `}
+              }}
+              onMouseLeave={(e) => {
+                if (!isSelected) {
+                  Object.assign(e.currentTarget.style, getPriorityStyles(priority));
+                }
+              }}
+              className="flex items-center px-3 py-2 rounded-lg text-sm font-medium border"
             >
-              <div className={`w-2 h-2 rounded-full ${priority.color.replace('border-l-', 'bg-')}`}></div>
               {priority.name}
             </button>
           );

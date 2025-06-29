@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import Input from '../ui/input';
-import Button from '../ui/button';
-import TagSelector from '../ui/tag-selector';
-import { Tag as TagType } from './helper';
-import { UI_TEXT, BUTTON_VARIANTS, BUTTON_SIZES } from './constants';
+import Input from '@/app/ui/input';
+import Button from '@/app/ui/button';
+import TagSelector from '@/app/ui/tag-selector';
+import { Tag as TagType } from '@/app/todos/helper';
+import { UI_TEXT, BUTTON_VARIANTS, BUTTON_SIZES } from '@/app/todos/constants';
 
 interface TodoInputProps {
   onAddTodo: (text: string, tags?: string[]) => void;

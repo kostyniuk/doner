@@ -1,8 +1,8 @@
 import React from 'react';
-import Tag from '../tag/tag';
-import Button from '../ui/button';
-import { Tag as TagType } from './helper';
-import { UI_TEXT, BUTTON_VARIANTS } from './constants';
+import Tag from '../tags/tag';
+import Button from '@/app/ui/button';
+import { Tag as TagType } from '@/app/todos/helper';
+import { UI_TEXT, BUTTON_VARIANTS } from '@/app/todos/constants';
 
 interface TagsSectionProps {
   tags: TagType[];

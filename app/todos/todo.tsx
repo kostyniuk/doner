@@ -1,6 +1,6 @@
 import React from 'react';
 import { Todo as TodoType, Tag as TagType, getPriorityColor, getPriorityBgColor } from './helper';
-import Tag from '../tag/tag';
+import Tag from '../tags/tag';
 import { TodoStatus } from './constants';
 
 interface TodoProps {
