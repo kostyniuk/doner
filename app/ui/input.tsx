@@ -35,10 +35,10 @@ const Input: React.FC<InputProps> = ({
       <input
         type={type}
         value={value}
-        onChange={(e) => onChange(e.target.value)}
-        onKeyPress={onKeyPress}
+        onChange={e => onChange(e.target.value)}
         placeholder={placeholder}
         disabled={disabled}
+        onKeyPress={onKeyPress}
         className={`w-full ${bgClassName} ${noBorder ? '' : 'border border-gray-600'} rounded-lg px-3 py-2 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:bg-gray-700 disabled:cursor-not-allowed' + (noBorder ? ' focus:ring-0 focus:border-transparent focus-visible:ring-0 focus-visible:border-transparent' : '')}`}
       />
     </div>

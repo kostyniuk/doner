@@ -61,12 +61,6 @@ const TodosPage = () => {
           ))}
         </div>
 
-        {/* Tags Section */}
-        <TagsSection
-          tags={tags}
-          onAddTag={handleAddTag}
-        />
-
         {/* Modal */}
         <TodoModal
           todo={modalTodo}

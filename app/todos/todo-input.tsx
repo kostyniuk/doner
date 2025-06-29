@@ -17,6 +17,9 @@ const TodoInput: React.FC<TodoInputProps> = ({ onAddTodo, tags, className = '' }
   const [descriptionValue, setDescriptionValue] = useState('');
   const [selectedTag, setSelectedTag] = useState<string[]>([]);
   const [showDescription, setShowDescription] = useState(false);
+  const [showNewTagInput, setShowNewTagInput] = useState(false);
+  const [newTagValue, setNewTagValue] = useState('');
+  const [localTags, setLocalTags] = useState<TagType[]>(tags);
 
   const handleAddTodo = () => {
     if (inputValue.trim() !== '') {
@@ -45,6 +48,20 @@ const TodoInput: React.FC<TodoInputProps> = ({ onAddTodo, tags, className = '' }
         ? prev.filter(id => id !== tagId)
         : [tagId], // Only allow one tag for new todos
     );
+  };
+
+  const handleAddNewTag = () => {
+    if (newTagValue.trim() !== '') {
+      const newTag: TagType = {
+        id: newTagValue.trim().toLowerCase().replace(/\s+/g, '-'),
+        name: newTagValue.trim(),
+        color: 'bg-blue-900/20 text-blue-400',
+      };
+      setLocalTags(prev => [...prev, newTag]);
+      setSelectedTag([newTag.id]);
+      setNewTagValue('');
+      setShowNewTagInput(false);
+    }
   };
 
   return (
@@ -92,15 +109,39 @@ const TodoInput: React.FC<TodoInputProps> = ({ onAddTodo, tags, className = '' }
         />
       )}
 
-      {/* Tag Selection */}
-      {tags.length > 0 && (
+      {/* Tag Selection + Add New Tag */}
+      <div className="flex flex-wrap gap-2 items-center">
         <TagSelector
-          tags={tags}
+          tags={localTags}
           selectedTags={selectedTag}
           onTagToggle={toggleTag}
           label={UI_TEXT.ADD_TAG_OPTIONAL}
         />
-      )}
+        <div className="ml-2 mt-6">
+        {showNewTagInput ? (
+          <Input
+            value={newTagValue}
+            onChange={setNewTagValue}
+            onKeyPress={e => {
+              if (e.key === 'Enter') handleAddNewTag();
+            }}
+            placeholder="New tag name"
+            className="w-32 text-sm"
+            noBorder={true}
+            bgClassName="bg-[#1f1f1f]"
+          />
+        ) : (
+          <Button
+            onClick={() => setShowNewTagInput(true)}
+            variant={BUTTON_VARIANTS.GHOST}
+            size={BUTTON_SIZES.SM}
+            className="px-3 py-1 rounded-full text-sm cursor-pointer text-[#9ca3af] bg-[#2a2a2a] hover:bg-[#3a3a3a]"
+          >
+            <span className="text-2xl leading-none">+</span>
+          </Button>
+        )}
+        </div>
+      </div>
     </div>
   );
 };

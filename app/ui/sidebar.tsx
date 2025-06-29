@@ -56,11 +56,11 @@ const Sidebar = () => {
                 href={item.href}
                 className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 ${
                   isActive
-                    ? 'bg-blue-600 text-white shadow-lg'
+                    ? 'bg-[#1ed760] text-black font-bold shadow-lg'
                     : 'text-gray-300 hover:bg-[#2a2a2a] hover:text-white'
                 }`}
               >
-                <div className={`${isActive ? 'text-white' : 'text-gray-400'}`}>
+                <div className={`${isActive ? 'text-black' : 'text-gray-400'}`}>
                   {item.icon}
                 </div>
                 <span className="font-medium">{item.label}</span>

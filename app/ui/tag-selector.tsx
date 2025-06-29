@@ -56,7 +56,7 @@ const TagSelector: React.FC<TagSelectorProps> = ({
           {label}
         </label>
       )}
-      <div className="flex flex-wrap gap-2">
+      <div className="flex items-center gap-2">
         {tags.map((tag) => {
           const selected = isTagSelected(tag.id);
           return (
