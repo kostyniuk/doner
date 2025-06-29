@@ -3,8 +3,11 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
+interface SidebarProps {
+  logo?: React.ReactNode;
+}
 
-const Sidebar = () => {
+const Sidebar = ({ logo }: SidebarProps) => {
   const pathname = usePathname();
 
   const navItems = [
@@ -41,6 +44,7 @@ const Sidebar = () => {
     <div className="w-64 h-screen bg-[#1f1f1f] border-r border-gray-800 flex flex-col">
       {/* Logo/Brand */}
       <div className="p-6 border-b border-gray-800">
+        {logo && <div className="flex justify-center items-center mb-2">{logo}</div>}
         <h2 className="text-xl font-bold text-white">Doner</h2>
         <p className="text-gray-400 text-sm mt-1">Task Management</p>
       </div>

@@ -29,25 +29,25 @@ export default function Footer(): React.ReactNode {
   return (
     <footer className="flex gap-[24px] flex-wrap items-center justify-center p-4">
       <FooterLink
-        href="https://nextjs.org/learn"
-        iconSrc="/file.svg"
-        iconAlt="File icon"
-      >
-        Learn
-      </FooterLink>
-      <FooterLink
-        href="https://github.com"
-        iconSrc="/github.svg"
+        href="https://github.com/kostyniuk"
+        iconSrc="/github.png"
         iconAlt="GitHub icon"
       >
         GitHub
       </FooterLink>
       <FooterLink
-        href="https://nextjs.org/docs"
-        iconSrc="/docs.svg"
-        iconAlt="Docs icon"
+        href="https://x.com/costiniuc00"
+        iconSrc="/twitter.png"
+        iconAlt="Twitter icon"
       >
-        Documentation
+        Twitter
+      </FooterLink>
+      <FooterLink
+        href="https://www.linkedin.com/in/kostyniuk/"
+        iconSrc="/linkedin.png"
+        iconAlt="LinkedIn icon"
+      >
+        LinkedIn
       </FooterLink>
     </footer>
   );
