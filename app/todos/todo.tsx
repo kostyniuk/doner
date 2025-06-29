@@ -1,7 +1,7 @@
 import React from 'react';
-import { Todo as TodoType, Tag as TagType, getPriorityColor, getPriorityBgColor } from './helper';
+import { Todo as TodoType, Tag as TagType, getPriorityColor, getPriorityBgColor, getPreviousStatus } from './helper';
 import Tag from '../tags/tag';
-import { TodoStatus } from './constants';
+import { TodoStatus, TODO_STATUSES } from './constants';
 
 interface TodoProps {
   todo: TodoType;
@@ -14,6 +14,8 @@ interface TodoProps {
 const Todo: React.FC<TodoProps> = ({ todo, tags, onMoveTodo, getNextStatus, onEdit }) => {
   const priorityColor = todo.priority ? getPriorityColor(todo.priority) : '';
   const priorityBgColor = todo.priority ? getPriorityBgColor(todo.priority) : '';
+  const isFirstStatus = todo.status === TODO_STATUSES.BACKLOG;
+  const isLastStatus = todo.status === TODO_STATUSES.DONE;
 
   return (
     <div
@@ -27,16 +29,32 @@ const Todo: React.FC<TodoProps> = ({ todo, tags, onMoveTodo, getNextStatus, onEd
     >
       <div className="flex justify-between items-start mb-3">
         <p className="text-lg text-white flex-1">{todo.text}</p>
-        <button
-          className="opacity-0 group-hover:opacity-100 transition-opacity text-gray-400 hover:text-white text-sm"
-          title={`Move to ${getNextStatus(todo.status)}`}
-          onClick={(e) => {
-            e.stopPropagation();
-            onMoveTodo(todo.id, getNextStatus(todo.status));
-          }}
-        >
-          →
-        </button>
+        <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+          {!isFirstStatus && (
+            <button
+              className="text-gray-400 hover:text-white text-sm px-1 py-0.5 rounded hover:bg-gray-700"
+              title={`Move to ${getPreviousStatus(todo.status)}`}
+              onClick={(e) => {
+                e.stopPropagation();
+                onMoveTodo(todo.id, getPreviousStatus(todo.status));
+              }}
+            >
+              ←
+            </button>
+          )}
+          {!isLastStatus && (
+            <button
+              className="text-gray-400 hover:text-white text-sm px-1 py-0.5 rounded hover:bg-gray-700"
+              title={`Move to ${getNextStatus(todo.status)}`}
+              onClick={(e) => {
+                e.stopPropagation();
+                onMoveTodo(todo.id, getNextStatus(todo.status));
+              }}
+            >
+              →
+            </button>
+          )}
+        </div>
       </div>
       {todo.tags && todo.tags.length > 0 && (
         <div className="flex gap-2">

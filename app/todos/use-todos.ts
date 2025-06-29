@@ -28,11 +28,32 @@ export const useTodos = (initialTodos: Todo[] = []) => {
   };
 
   const moveTodo = (todoId: number, newStatus: Todo['status']) => {
-    setTodos(prev =>
-      prev.map(todo =>
-        todo.id === todoId ? { ...todo, status: newStatus } : todo,
-      ),
-    );
+    setTodos(prev => {
+      // Find the todo to move
+      const todoToMove = prev.find(todo => todo.id === todoId);
+      if (!todoToMove) return prev;
+
+      // Remove the todo from its current position
+      const todosWithoutMoved = prev.filter(todo => todo.id !== todoId);
+      
+      // Find the index where todos of the new status start
+      const newStatusIndex = todosWithoutMoved.findIndex(todo => todo.status === newStatus);
+      
+      if (newStatusIndex === -1) {
+        // If no todos exist with the new status, add it at the beginning
+        return [{ ...todoToMove, status: newStatus }, ...todosWithoutMoved];
+      }
+      
+      // Insert the moved todo at the beginning of its new status group
+      const beforeNewStatus = todosWithoutMoved.slice(0, newStatusIndex);
+      const afterNewStatus = todosWithoutMoved.slice(newStatusIndex);
+      
+      return [
+        ...beforeNewStatus,
+        { ...todoToMove, status: newStatus },
+        ...afterNewStatus,
+      ];
+    });
   };
 
   return {

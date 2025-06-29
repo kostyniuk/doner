@@ -39,6 +39,19 @@ export const getNextStatus = (currentStatus: TodoStatus): TodoStatus => {
   }
 };
 
+export const getPreviousStatus = (currentStatus: TodoStatus): TodoStatus => {
+  switch (currentStatus) {
+  case TODO_STATUSES.BACKLOG:
+    return TODO_STATUSES.DONE;
+  case TODO_STATUSES.IN_PROGRESS:
+    return TODO_STATUSES.BACKLOG;
+  case TODO_STATUSES.DONE:
+    return TODO_STATUSES.IN_PROGRESS;
+  default:
+    return TODO_STATUSES.BACKLOG;
+  }
+};
+
 export const getPriorityConfig = (priority: Priority) => {
   return PRIORITY_CONFIGS[priority];
 };
