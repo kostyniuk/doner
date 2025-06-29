@@ -21,6 +21,44 @@ export const TODO_STATUS_COLORS = {
   [TODO_STATUSES.DONE]: 'border-t-green-500',
 } as const;
 
+// Priority types
+export const PRIORITIES = {
+  LOW: 'low',
+  MEDIUM: 'medium',
+  HIGH: 'high',
+  URGENT: 'urgent',
+} as const;
+
+export type Priority = typeof PRIORITIES[keyof typeof PRIORITIES];
+
+// Priority configurations
+export const PRIORITY_CONFIGS = {
+  [PRIORITIES.LOW]: {
+    id: PRIORITIES.LOW,
+    name: 'Low',
+    color: 'border-l-green-400',
+    bgColor: 'bg-green-400/10',
+  },
+  [PRIORITIES.MEDIUM]: {
+    id: PRIORITIES.MEDIUM,
+    name: 'Medium',
+    color: 'border-l-blue-400',
+    bgColor: 'bg-blue-400/10',
+  },
+  [PRIORITIES.HIGH]: {
+    id: PRIORITIES.HIGH,
+    name: 'High',
+    color: 'border-l-orange-400',
+    bgColor: 'bg-orange-400/10',
+  },
+  [PRIORITIES.URGENT]: {
+    id: PRIORITIES.URGENT,
+    name: 'Urgent',
+    color: 'border-l-red-400',
+    bgColor: 'bg-red-400/10',
+  },
+} as const;
+
 // Tag types
 export const TAG_TYPES = {
   BUG: 'bug',
@@ -57,12 +95,14 @@ export const UI_TEXT = {
   TASK_NAME: 'Task Name',
   TAGS: 'Tags',
   STATUS: 'Status',
+  PRIORITY: 'Priority',
   SAVE: 'Save',
   CANCEL: 'Cancel',
   DELETE: 'Delete',
   EDIT_TODO: 'Edit Todo',
   TODO_APP: 'Todo App',
   ENTER_TASK_NAME: 'Enter task name',
+  SELECT_PRIORITY: 'Select priority',
 } as const;
 
 // Modal actions

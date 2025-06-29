@@ -1,9 +1,10 @@
-import { TODO_STATUSES, TODO_STATUS_DISPLAY_NAMES, TODO_STATUS_COLORS, TodoStatus } from './constants';
+import { TODO_STATUSES, TODO_STATUS_DISPLAY_NAMES, TODO_STATUS_COLORS, TodoStatus, Priority, PRIORITY_CONFIGS } from './constants';
 
 export interface Todo {
   id: number;
   text: string;
   status: TodoStatus;
+  priority?: Priority;
   tags?: string[];
 }
 
@@ -36,4 +37,16 @@ export const getNextStatus = (currentStatus: TodoStatus): TodoStatus => {
     default:
       return TODO_STATUSES.BACKLOG;
   }
+};
+
+export const getPriorityConfig = (priority: Priority) => {
+  return PRIORITY_CONFIGS[priority];
+};
+
+export const getPriorityColor = (priority: Priority) => {
+  return PRIORITY_CONFIGS[priority]?.color || '';
+};
+
+export const getPriorityBgColor = (priority: Priority) => {
+  return PRIORITY_CONFIGS[priority]?.bgColor || '';
 }; 

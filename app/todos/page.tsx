@@ -8,17 +8,17 @@ import TagsSection from './tags-section';
 import { useTodos } from './use-todos';
 import { useModal } from './use-modal';
 import { Tag as TagType, getColumnTodos, getColumnColor, getColumnTitle, getNextStatus } from './helper';
-import { TODO_STATUSES, TAG_CONFIGS, UI_TEXT } from './constants';
+import { TODO_STATUSES, TAG_CONFIGS, UI_TEXT, PRIORITIES } from './constants';
 
 const initialTodos = [
-  { id: 1, text: 'Design database schema', status: TODO_STATUSES.BACKLOG, tags: [TAG_CONFIGS.documentation.id] },
-  { id: 2, text: 'Write documentation', status: TODO_STATUSES.BACKLOG, tags: [TAG_CONFIGS.documentation.id] },
-  { id: 3, text: 'Fix login issue', status: TODO_STATUSES.BACKLOG, tags: [TAG_CONFIGS.bug.id] },
-  { id: 4, text: 'Implement authentication', status: TODO_STATUSES.IN_PROGRESS, tags: [TAG_CONFIGS.feature.id] },
-  { id: 5, text: 'Build user profile page', status: TODO_STATUSES.IN_PROGRESS, tags: [TAG_CONFIGS.feature.id] },
-  { id: 6, text: 'Update dependencies', status: TODO_STATUSES.DONE },
-  { id: 7, text: 'Deploy to production', status: TODO_STATUSES.DONE },
-  { id: 8, text: 'Plan sprint retrospective', status: TODO_STATUSES.DONE },
+  { id: 1, text: 'Design database schema', status: TODO_STATUSES.BACKLOG, priority: PRIORITIES.HIGH, tags: [TAG_CONFIGS.documentation.id] },
+  { id: 2, text: 'Write documentation', status: TODO_STATUSES.BACKLOG, priority: PRIORITIES.MEDIUM, tags: [TAG_CONFIGS.documentation.id] },
+  { id: 3, text: 'Fix login issue', status: TODO_STATUSES.BACKLOG, priority: PRIORITIES.URGENT, tags: [TAG_CONFIGS.bug.id] },
+  { id: 4, text: 'Implement authentication', status: TODO_STATUSES.IN_PROGRESS, priority: PRIORITIES.HIGH, tags: [TAG_CONFIGS.feature.id] },
+  { id: 5, text: 'Build user profile page', status: TODO_STATUSES.IN_PROGRESS, priority: PRIORITIES.MEDIUM, tags: [TAG_CONFIGS.feature.id] },
+  { id: 6, text: 'Update dependencies', status: TODO_STATUSES.DONE, priority: PRIORITIES.LOW },
+  { id: 7, text: 'Deploy to production', status: TODO_STATUSES.DONE, priority: PRIORITIES.HIGH },
+  { id: 8, text: 'Plan sprint retrospective', status: TODO_STATUSES.DONE, priority: PRIORITIES.MEDIUM },
 ];
 
 const TodosPage = () => {

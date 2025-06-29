@@ -1,5 +1,5 @@
 import React from 'react';
-import { Todo as TodoType, Tag as TagType } from './helper';
+import { Todo as TodoType, Tag as TagType, getPriorityColor, getPriorityBgColor } from './helper';
 import Tag from '../tag/tag';
 import { TodoStatus } from './constants';
 
@@ -12,9 +12,17 @@ interface TodoProps {
 }
 
 const Todo: React.FC<TodoProps> = ({ todo, tags, onMoveTodo, getNextStatus, onEdit }) => {
+  const priorityColor = todo.priority ? getPriorityColor(todo.priority) : '';
+  const priorityBgColor = todo.priority ? getPriorityBgColor(todo.priority) : '';
+
   return (
     <div
-      className="bg-[#1f1f1f] rounded-lg p-4 hover:bg-[#2a2a2a] transition-colors group cursor-pointer"
+      className={`
+        bg-[#1f1f1f] rounded-lg p-4 hover:bg-[#2a2a2a] transition-colors group cursor-pointer
+        ${todo.priority ? priorityBgColor : ''}
+        ${todo.priority ? priorityColor : ''}
+        border-l-4
+      `}
       onClick={() => onEdit(todo)}
     >
       <div className="flex justify-between items-start mb-3">

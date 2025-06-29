@@ -4,7 +4,8 @@ import Modal from '../ui/modal';
 import Button from '../ui/button';
 import Input from '../ui/input';
 import TagSelector from '../ui/tag-selector';
-import { TODO_STATUS_DISPLAY_NAMES, UI_TEXT, BUTTON_VARIANTS } from './constants';
+import PrioritySelector from '../ui/priority-selector';
+import { TODO_STATUS_DISPLAY_NAMES, UI_TEXT, BUTTON_VARIANTS, Priority } from './constants';
 
 interface TodoModalProps {
   todo: TodoType | null;
@@ -25,11 +26,13 @@ const TodoModal: React.FC<TodoModalProps> = ({
 }) => {
   const [editedText, setEditedText] = useState('');
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const [selectedPriority, setSelectedPriority] = useState<Priority | undefined>(undefined);
 
   useEffect(() => {
     if (todo) {
       setEditedText(todo.text);
       setSelectedTags(todo.tags || []);
+      setSelectedPriority(todo.priority);
     }
   }, [todo]);
 
@@ -38,6 +41,7 @@ const TodoModal: React.FC<TodoModalProps> = ({
       onUpdate(todo.id, {
         text: editedText.trim(),
         tags: selectedTags.length > 0 ? selectedTags : undefined,
+        priority: selectedPriority,
       });
       onClose();
     }
@@ -63,6 +67,10 @@ const TodoModal: React.FC<TodoModalProps> = ({
     });
   };
 
+  const handlePriorityChange = (priority: Priority) => {
+    setSelectedPriority(selectedPriority === priority ? undefined : priority);
+  };
+
   const getStatusDisplay = (status: TodoType['status']) => {
     return TODO_STATUS_DISPLAY_NAMES[status] || status;
   };
@@ -80,6 +88,13 @@ const TodoModal: React.FC<TodoModalProps> = ({
           onChange={setEditedText}
           label={UI_TEXT.TASK_NAME}
           placeholder={UI_TEXT.ENTER_TASK_NAME}
+        />
+
+        {/* Priority */}
+        <PrioritySelector
+          selectedPriority={selectedPriority}
+          onPriorityChange={handlePriorityChange}
+          label={UI_TEXT.PRIORITY}
         />
 
         {/* Tags */}
