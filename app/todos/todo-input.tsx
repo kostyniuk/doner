@@ -59,6 +59,8 @@ const TodoInput: React.FC<TodoInputProps> = ({ onAddTodo, tags, className = '' }
             onKeyPress={handleKeyPress}
             placeholder={UI_TEXT.ADD_TASK}
             className="flex-1 bg-transparent border-none shadow-none"
+            bgClassName="bg-[#1f1f1f]"
+            noBorder={true}
           />
         </div>
         <Button
@@ -70,9 +72,10 @@ const TodoInput: React.FC<TodoInputProps> = ({ onAddTodo, tags, className = '' }
         </Button>
         <Button
           onClick={handleAddTodo}
-          variant={BUTTON_VARIANTS.SECONDARY}
+          variant="custom"
           size={BUTTON_SIZES.LG}
           disabled={inputValue.trim() === ''}
+          className="bg-[#1ed760] hover:bg-[#21e065] text-black font-bold cursor-pointer"
         >
           {UI_TEXT.SAVE}
         </Button>

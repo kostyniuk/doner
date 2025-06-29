@@ -3,7 +3,7 @@ import React from 'react';
 interface ButtonProps {
   children: React.ReactNode;
   onClick?: () => void;
-  variant?: 'primary' | 'secondary' | 'danger' | 'ghost';
+  variant?: 'primary' | 'secondary' | 'danger' | 'ghost' | 'custom';
   size?: 'sm' | 'md' | 'lg';
   disabled?: boolean;
   className?: string;
@@ -26,6 +26,7 @@ const Button: React.FC<ButtonProps> = ({
     secondary: 'bg-[#2a2a2a] hover:bg-[#3a3a3a] text-white focus:ring-gray-500 disabled:bg-gray-600 disabled:cursor-not-allowed',
     danger: 'bg-red-600 hover:bg-red-700 text-white focus:ring-red-500 disabled:bg-gray-600 disabled:cursor-not-allowed',
     ghost: 'bg-transparent hover:bg-[#2a2a2a] text-gray-400 hover:text-white focus:ring-gray-500',
+    custom: '',
   };
 
   const sizeClasses = {
@@ -34,7 +35,7 @@ const Button: React.FC<ButtonProps> = ({
     lg: 'px-6 py-3 text-base',
   };
 
-  const classes = `${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${className}`;
+  const classes = `${baseClasses} ${variantClasses[variant] ?? ''} ${sizeClasses[size]} ${className}`;
 
   return (
     <button
