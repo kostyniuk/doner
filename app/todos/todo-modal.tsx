@@ -6,7 +6,7 @@ import Input from '@/app/ui/input';
 import Textarea from '@/app/ui/textarea';
 import TagSelector from '@/app/ui/tag-selector';
 import PrioritySelector from '@/app/ui/priority-selector';
-import { TODO_STATUS_DISPLAY_NAMES, UI_TEXT, BUTTON_VARIANTS, Priority } from '@/app/todos/constants';
+import { UI_TEXT, BUTTON_VARIANTS, Priority } from '@/app/todos/constants';
 
 interface TodoModalProps {
   todo: TodoType | null;
@@ -75,10 +75,6 @@ const TodoModal: React.FC<TodoModalProps> = ({
     setSelectedPriority(selectedPriority === priority ? undefined : priority);
   };
 
-  const getStatusDisplay = (status: TodoType['status']) => {
-    return TODO_STATUS_DISPLAY_NAMES[status] || status;
-  };
-
   return (
     <Modal
       isOpen={isOpen}
@@ -125,7 +121,7 @@ const TodoModal: React.FC<TodoModalProps> = ({
 
         {/* Actions */}
         <div className="flex gap-3 pt-4">
-        <Button
+          <Button
             variant={BUTTON_VARIANTS.PRIMARY}
             onClick={handleSave}
             disabled={editedText.trim() === ''}

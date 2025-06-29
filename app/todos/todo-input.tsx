@@ -21,9 +21,9 @@ const TodoInput: React.FC<TodoInputProps> = ({ onAddTodo, tags, className = '' }
   const handleAddTodo = () => {
     if (inputValue.trim() !== '') {
       onAddTodo(
-        inputValue.trim(), 
+        inputValue.trim(),
         selectedTag.length > 0 ? selectedTag : undefined,
-        descriptionValue.trim() || undefined
+        descriptionValue.trim() || undefined,
       );
       setInputValue('');
       setDescriptionValue('');
