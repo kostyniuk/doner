@@ -5,10 +5,11 @@ import { TODO_STATUSES } from './constants';
 export const useTodos = (initialTodos: Todo[] = []) => {
   const [todos, setTodos] = useState<Todo[]>(initialTodos);
 
-  const addTodo = (text: string, tags?: string[]) => {
+  const addTodo = (text: string, tags?: string[], description?: string) => {
     const newTodo: Todo = {
       id: Date.now(),
       text,
+      description,
       status: TODO_STATUSES.BACKLOG,
       tags,
     };

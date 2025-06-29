@@ -93,6 +93,7 @@ export const UI_TEXT = {
   ADD_TAG: 'Add tag',
   ADD_TAG_OPTIONAL: 'Add tag (optional)',
   TASK_NAME: 'Task Name',
+  DESCRIPTION: 'Description',
   TAGS: 'Tags',
   STATUS: 'Status',
   PRIORITY: 'Priority',
@@ -102,6 +103,7 @@ export const UI_TEXT = {
   EDIT_TODO: 'Edit Todo',
   TODO_APP: 'Todo App',
   ENTER_TASK_NAME: 'Enter task name',
+  ENTER_DESCRIPTION: 'Enter task description (optional)',
   SELECT_PRIORITY: 'Select priority',
 } as const;
 

@@ -3,6 +3,7 @@ import { Todo as TodoType, Tag as TagType } from '@/app/todos/helper';
 import Modal from '@/app/ui/modal';
 import Button from '@/app/ui/button';
 import Input from '@/app/ui/input';
+import Textarea from '@/app/ui/textarea';
 import TagSelector from '@/app/ui/tag-selector';
 import PrioritySelector from '@/app/ui/priority-selector';
 import { TODO_STATUS_DISPLAY_NAMES, UI_TEXT, BUTTON_VARIANTS, Priority } from '@/app/todos/constants';
@@ -25,12 +26,14 @@ const TodoModal: React.FC<TodoModalProps> = ({
   onDelete,
 }) => {
   const [editedText, setEditedText] = useState('');
+  const [editedDescription, setEditedDescription] = useState('');
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [selectedPriority, setSelectedPriority] = useState<Priority | undefined>(undefined);
 
   useEffect(() => {
     if (todo) {
       setEditedText(todo.text);
+      setEditedDescription(todo.description || '');
       setSelectedTags(todo.tags || []);
       setSelectedPriority(todo.priority);
     }
@@ -40,6 +43,7 @@ const TodoModal: React.FC<TodoModalProps> = ({
     if (todo && editedText.trim() !== '') {
       onUpdate(todo.id, {
         text: editedText.trim(),
+        description: editedDescription.trim() || undefined,
         tags: selectedTags.length > 0 ? selectedTags : undefined,
         priority: selectedPriority,
       });
@@ -79,17 +83,22 @@ const TodoModal: React.FC<TodoModalProps> = ({
     <Modal
       isOpen={isOpen}
       onClose={onClose}
-      title={UI_TEXT.EDIT_TODO}
+      title=""
+      size="lg"
+      header={
+        <div className="w-full px-6 pt-6 pb-2" style={{ maxWidth: '650px' }}>
+          <Input
+            value={editedText}
+            onChange={setEditedText}
+            placeholder={UI_TEXT.ENTER_TASK_NAME}
+            className="text-xl font-bold shadow-none px-0 py-0 m-0 w-full focus:ring-0 focus:border-transparent"
+            bgClassName="bg-[#1f1f1f]"
+            noBorder={true}
+          />
+        </div>
+      }
     >
       <div className="space-y-4">
-        {/* Todo Text */}
-        <Input
-          value={editedText}
-          onChange={setEditedText}
-          label={UI_TEXT.TASK_NAME}
-          placeholder={UI_TEXT.ENTER_TASK_NAME}
-        />
-
         {/* Priority */}
         <PrioritySelector
           selectedPriority={selectedPriority}
@@ -105,39 +114,31 @@ const TodoModal: React.FC<TodoModalProps> = ({
           label={UI_TEXT.TAGS}
         />
 
-        {/* Status */}
-        <div>
-          <label className="block text-sm font-medium text-gray-300 mb-2">
-            {UI_TEXT.STATUS}
-          </label>
-          <div className="text-white bg-[#2a2a2a] rounded-lg px-3 py-2">
-            {todo ? getStatusDisplay(todo.status) : ''}
-          </div>
-        </div>
+        {/* Description */}
+        <Textarea
+          value={editedDescription}
+          onChange={setEditedDescription}
+          label={UI_TEXT.DESCRIPTION}
+          placeholder={UI_TEXT.ENTER_DESCRIPTION}
+          rows={6}
+        />
 
         {/* Actions */}
         <div className="flex gap-3 pt-4">
-          <Button
-            variant={BUTTON_VARIANTS.DANGER}
-            onClick={handleDelete}
-            className="flex-1"
-          >
-            {UI_TEXT.DELETE}
-          </Button>
-          <Button
-            variant={BUTTON_VARIANTS.SECONDARY}
-            onClick={onClose}
-            className="flex-1"
-          >
-            {UI_TEXT.CANCEL}
-          </Button>
-          <Button
+        <Button
             variant={BUTTON_VARIANTS.PRIMARY}
             onClick={handleSave}
             disabled={editedText.trim() === ''}
             className="flex-1"
           >
             {UI_TEXT.SAVE}
+          </Button>
+          <Button
+            variant={BUTTON_VARIANTS.DANGER}
+            onClick={handleDelete}
+            className="flex-1"
+          >
+            {UI_TEXT.DELETE}
           </Button>
         </div>
       </div>

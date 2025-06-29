@@ -6,6 +6,8 @@ interface ModalProps {
   title: string;
   children: React.ReactNode;
   className?: string;
+  size?: 'sm' | 'md' | 'lg';
+  header?: React.ReactNode;
 }
 
 const Modal: React.FC<ModalProps> = ({
@@ -14,22 +16,40 @@ const Modal: React.FC<ModalProps> = ({
   title,
   children,
   className = '',
+  size = 'md',
+  header,
 }) => {
   if (!isOpen) return null;
 
+  const sizeClasses = {
+    sm: 'w-full max-w-md mx-4',
+    md: 'w-full max-w-lg mx-4',
+    lg: 'w-full max-w-2xl mx-4',
+  };
+
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-      <div className={`bg-[#1f1f1f] rounded-xl p-6 w-full max-w-md mx-4 ${className}`}>
-        <div className="flex justify-between items-center mb-6">
-          <h2 className="text-xl font-semibold text-white">{title}</h2>
-          <button
-            onClick={onClose}
-            className="text-gray-400 hover:text-white text-2xl transition-colors"
-          >
-            ×
-          </button>
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+      <div className={`bg-[#1f1f1f] rounded-xl ${sizeClasses[size]} max-h-[90vh] flex flex-col relative ${className}`} style={{ minHeight: 0 }}>
+        {/* Close button always at top right */}
+        <button
+          onClick={onClose}
+          className="absolute top-0 right-0 p-6 text-gray-400 hover:text-white text-2xl transition-colors z-10"
+          style={{ lineHeight: 1, marginTop: 9, marginRight: 8 }}
+          aria-label="Close"
+        >
+          ×
+        </button>
+        {/* Custom header node, flush with modal top */}
+        {header}
+        <div className="p-6 flex-1 min-h-0 overflow-y-auto flex flex-col">
+          {/* Default header if no custom header provided and title exists */}
+          {!header && title && (
+            <div className="flex justify-between items-center mb-6">
+              <h2 className="text-xl font-semibold text-white">{title}</h2>
+            </div>
+          )}
+          {children}
         </div>
-        {children}
       </div>
     </div>
   );

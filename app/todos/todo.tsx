@@ -28,7 +28,12 @@ const Todo: React.FC<TodoProps> = ({ todo, tags, onMoveTodo, getNextStatus, onEd
       onClick={() => onEdit(todo)}
     >
       <div className="flex justify-between items-start mb-3">
-        <p className="text-lg text-white flex-1">{todo.text}</p>
+        <div className="flex-1">
+          <p className="text-lg text-white mb-2">{todo.text}</p>
+          {todo.description && (
+            <p className="text-sm text-gray-400 line-clamp-2">{todo.description}</p>
+          )}
+        </div>
         <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
           {!isFirstStatus && (
             <button

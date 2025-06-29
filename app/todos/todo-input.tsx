@@ -1,30 +1,40 @@
 import React, { useState } from 'react';
 import Input from '@/app/ui/input';
+import Textarea from '@/app/ui/textarea';
 import Button from '@/app/ui/button';
 import TagSelector from '@/app/ui/tag-selector';
 import { Tag as TagType } from '@/app/todos/helper';
 import { UI_TEXT, BUTTON_VARIANTS, BUTTON_SIZES } from '@/app/todos/constants';
 
 interface TodoInputProps {
-  onAddTodo: (text: string, tags?: string[]) => void;
+  onAddTodo: (text: string, tags?: string[], description?: string) => void;
   tags: TagType[];
   className?: string;
 }
 
 const TodoInput: React.FC<TodoInputProps> = ({ onAddTodo, tags, className = '' }) => {
   const [inputValue, setInputValue] = useState('');
+  const [descriptionValue, setDescriptionValue] = useState('');
   const [selectedTag, setSelectedTag] = useState<string[]>([]);
+  const [showDescription, setShowDescription] = useState(false);
 
   const handleAddTodo = () => {
     if (inputValue.trim() !== '') {
-      onAddTodo(inputValue.trim(), selectedTag.length > 0 ? selectedTag : undefined);
+      onAddTodo(
+        inputValue.trim(), 
+        selectedTag.length > 0 ? selectedTag : undefined,
+        descriptionValue.trim() || undefined
+      );
       setInputValue('');
+      setDescriptionValue('');
       setSelectedTag([]);
+      setShowDescription(false);
     }
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter') {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
       handleAddTodo();
     }
   };
@@ -52,6 +62,13 @@ const TodoInput: React.FC<TodoInputProps> = ({ onAddTodo, tags, className = '' }
           />
         </div>
         <Button
+          onClick={() => setShowDescription(!showDescription)}
+          variant={BUTTON_VARIANTS.GHOST}
+          size={BUTTON_SIZES.MD}
+        >
+          {showDescription ? 'Hide' : 'Add'} Description
+        </Button>
+        <Button
           onClick={handleAddTodo}
           variant={BUTTON_VARIANTS.SECONDARY}
           size={BUTTON_SIZES.LG}
@@ -60,6 +77,17 @@ const TodoInput: React.FC<TodoInputProps> = ({ onAddTodo, tags, className = '' }
           {UI_TEXT.SAVE}
         </Button>
       </div>
+
+      {/* Description Section */}
+      {showDescription && (
+        <Textarea
+          value={descriptionValue}
+          onChange={setDescriptionValue}
+          placeholder={UI_TEXT.ENTER_DESCRIPTION}
+          rows={4}
+          className="bg-[#1f1f1f] rounded-xl p-4"
+        />
+      )}
 
       {/* Tag Selection */}
       {tags.length > 0 && (

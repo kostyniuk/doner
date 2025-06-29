@@ -9,6 +9,8 @@ interface InputProps {
   disabled?: boolean;
   className?: string;
   onKeyPress?: (e: React.KeyboardEvent) => void;
+  bgClassName?: string;
+  noBorder?: boolean;
 }
 
 const Input: React.FC<InputProps> = ({
@@ -20,6 +22,8 @@ const Input: React.FC<InputProps> = ({
   disabled = false,
   className = '',
   onKeyPress,
+  bgClassName = 'bg-[#2a2a2a]',
+  noBorder = false,
 }) => {
   return (
     <div className={className}>
@@ -35,7 +39,7 @@ const Input: React.FC<InputProps> = ({
         onKeyPress={onKeyPress}
         placeholder={placeholder}
         disabled={disabled}
-        className="w-full bg-[#2a2a2a] text-white rounded-lg px-3 py-2 outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-700 disabled:cursor-not-allowed placeholder-gray-500"
+        className={`w-full ${bgClassName} ${noBorder ? '' : 'border border-gray-600'} rounded-lg px-3 py-2 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:bg-gray-700 disabled:cursor-not-allowed' + (noBorder ? ' focus:ring-0 focus:border-transparent focus-visible:ring-0 focus-visible:border-transparent' : '')}`}
       />
     </div>
   );

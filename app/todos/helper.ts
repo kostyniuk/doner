@@ -3,6 +3,7 @@ import { TODO_STATUSES, TODO_STATUS_DISPLAY_NAMES, TODO_STATUS_COLORS, TodoStatu
 export interface Todo {
   id: number;
   text: string;
+  description?: string;
   status: TodoStatus;
   priority?: Priority;
   tags?: string[];
