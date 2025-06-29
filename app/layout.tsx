@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import '@/app/globals.css';
 import { roboto_mono } from '@/app/ui/fonts';
-import Footer from './ui/footer';
 import Sidebar from './ui/sidebar';
 import Head from 'next/head';
 import Logo from '@/app/logo';

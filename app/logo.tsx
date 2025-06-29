@@ -1,4 +1,4 @@
-const Logo = ({ className = "" }: { className?: string }) => (
+const Logo = ({ className = '' }: { className?: string }) => (
   <svg
     width="200"
     height="200"
@@ -15,4 +15,4 @@ const Logo = ({ className = "" }: { className?: string }) => (
   </svg>
 );
 
-export default Logo; 
+export default Logo;
