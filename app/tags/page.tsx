@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Tag from '@/app/tag/tag';
 
 interface Tag {
   id: number;
@@ -47,7 +48,7 @@ const TagsPage = () => {
     }
   };
 
-  const deleteTag = (id: number) => {
+  const deleteTag = (id: string | number) => {
     setTags(tags.filter(tag => tag.id !== id));
   };
 
@@ -131,40 +132,15 @@ const TagsPage = () => {
           {/* Tags Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {tags.map((tag) => (
-              <div
+              <Tag
                 key={tag.id}
-                className="bg-[#1f1f1f] rounded-lg p-6 hover:bg-[#252525] transition-colors"
-              >
-                <div className="flex items-center justify-between mb-4">
-                  <div className="flex items-center gap-3">
-                    <div className={`w-4 h-4 rounded-full ${tag.color}`}></div>
-                    <h3 className="font-semibold text-white">{tag.name}</h3>
-                  </div>
-                  <button
-                    onClick={() => deleteTag(tag.id)}
-                    className="text-gray-500 hover:text-red-400 transition-colors p-1"
-                  >
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                    </svg>
-                  </button>
-                </div>
-                
-                <div className="text-gray-400 text-sm">
-                  {tag.count} {tag.count === 1 ? 'task' : 'tasks'}
-                </div>
-
-                <div className="mt-4">
-                  <div className="flex items-center gap-2 text-xs text-gray-500">
-                    <div className="w-full bg-gray-700 rounded-full h-1">
-                      <div 
-                        className={`h-1 rounded-full ${tag.color}`}
-                        style={{ width: `${Math.min((tag.count / 5) * 100, 100)}%` }}
-                      ></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+                id={tag.id}
+                name={tag.name}
+                color={tag.color}
+                count={tag.count}
+                variant="card"
+                onDelete={deleteTag}
+              />
             ))}
           </div>
 
