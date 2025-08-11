@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Input from '@/app/ui/input';
 import Textarea from '@/app/ui/textarea';
 import Button from '@/app/ui/button';
@@ -20,6 +20,7 @@ const TodoInput: React.FC<TodoInputProps> = ({ onAddTodo, tags, className = '' }
   const [showNewTagInput, setShowNewTagInput] = useState(false);
   const [newTagValue, setNewTagValue] = useState('');
   const [localTags, setLocalTags] = useState<TagType[]>(tags);
+  const newTagContainerRef = useRef<HTMLDivElement | null>(null);
 
   const handleAddTodo = () => {
     if (inputValue.trim() !== '') {
@@ -63,6 +64,23 @@ const TodoInput: React.FC<TodoInputProps> = ({ onAddTodo, tags, className = '' }
       setShowNewTagInput(false);
     }
   };
+
+  // Close the new tag input when clicking outside of its container
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        showNewTagInput &&
+        newTagContainerRef.current &&
+        !newTagContainerRef.current.contains(event.target as Node)
+      ) {
+        setShowNewTagInput(false);
+        setNewTagValue('');
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [showNewTagInput]);
 
   return (
     <div className={`space-y-4 ${className}`}>
@@ -116,7 +134,7 @@ const TodoInput: React.FC<TodoInputProps> = ({ onAddTodo, tags, className = '' }
           onTagToggle={toggleTag}
           label={UI_TEXT.ADD_TAG_OPTIONAL}
         />
-        <div className="ml-2 mt-6">
+        <div className="ml-2 mt-6" ref={newTagContainerRef}>
           {showNewTagInput ? (
             <Input
               value={newTagValue}
@@ -136,7 +154,7 @@ const TodoInput: React.FC<TodoInputProps> = ({ onAddTodo, tags, className = '' }
               size={BUTTON_SIZES.SM}
               className="px-3 py-1 rounded-full text-sm cursor-pointer text-[#9ca3af] bg-white/10 hover:bg-white/20"
             >
-              <span className="text-2xl leading-none">+</span>
+              <span className="text-sm leading-none">+</span>
             </Button>
           )}
         </div>

@@ -27,7 +27,7 @@ export default function RootLayout({
       </Head>
       <body className={`${roboto_mono.className} antialiased`}>
         <div className="flex flex-row">
-          <Sidebar logo={<Logo className="w-10 h-10 mb-2" />} />
+          <Sidebar logo={<Logo className="w-10 h-10" />} />
           {children}
         </div>
       </body>

@@ -11,7 +11,7 @@ interface SidebarProps {
 
 const Sidebar = ({ logo }: SidebarProps) => {
   const pathname = usePathname();
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(true);
 
   const navItems = [
     {
@@ -44,7 +44,11 @@ const Sidebar = ({ logo }: SidebarProps) => {
   ];
 
   return (
-    <div className={`${collapsed ? 'w-20' : 'w-64'} h-screen sidebar-surface flex flex-col transition-all duration-300`}>
+    <div
+      className={`${collapsed ? 'w-20' : 'w-64'} h-screen glass-surface sidebar-surface rounded-r-2xl overflow-hidden backdrop-blur-md flex flex-col transition-all duration-300`}
+      onMouseEnter={() => setCollapsed(false)}
+      onMouseLeave={() => setCollapsed(true)}
+    >
       {/* Header */}
       <div className={`p-4 border-b border-white/10 ${collapsed ? 'flex flex-col items-center gap-2' : 'flex items-center justify-between'}`}>
         <div className={`flex items-center ${collapsed ? 'w-full justify-center' : 'gap-2'}`}>
@@ -52,16 +56,15 @@ const Sidebar = ({ logo }: SidebarProps) => {
           {!collapsed && (
             <div>
               <h2 className="text-lg font-bold text-white leading-none">Doner</h2>
-              <p className="text-gray-300 text-xs mt-0.5">Task Management</p>
+              {/* <p className="text-gray-300 text-xs mt-0.5">Task Management</p> */}
             </div>
           )}
         </div>
         <button
           type="button"
-          aria-label={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
-          title={collapsed ? 'Expand' : 'Collapse'}
-          className="shrink-0 inline-flex items-center justify-center rounded-md border border-white/10 text-white hover:bg-white/10 transition-colors w-8 h-8"
-          onClick={() => setCollapsed((v) => !v)}
+          aria-label="Sidebar toggle hotspot"
+          title="Sidebar"
+          className="shrink-0 inline-flex items-center justify-center rounded-xl border border-white/10 text-white hover:bg-white/10 transition-colors w-10 h-10"
         >
           {collapsed ? <ChevronRight className="w-4 h-4" /> : <ChevronLeft className="w-4 h-4" />}
         </button>
