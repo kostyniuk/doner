@@ -2,6 +2,8 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useState } from 'react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface SidebarProps {
   logo?: React.ReactNode;
@@ -9,6 +11,7 @@ interface SidebarProps {
 
 const Sidebar = ({ logo }: SidebarProps) => {
   const pathname = usePathname();
+  const [collapsed, setCollapsed] = useState(false);
 
   const navItems = [
     {
@@ -41,12 +44,27 @@ const Sidebar = ({ logo }: SidebarProps) => {
   ];
 
   return (
-    <div className="w-64 h-screen glass-card flex flex-col">
-      {/* Logo/Brand */}
-      <div className="p-6 border-b border-white/10">
-        {logo && <div className="flex justify-center items-center mb-2">{logo}</div>}
-        <h2 className="text-xl font-bold text-white">Doner</h2>
-        <p className="text-gray-300 text-sm mt-1">Task Management</p>
+    <div className={`${collapsed ? 'w-20' : 'w-64'} h-screen glass-card flex flex-col transition-all duration-300`}>
+      {/* Header */}
+      <div className={`p-4 border-b border-white/10 ${collapsed ? 'flex flex-col items-center gap-2' : 'flex items-center justify-between'}`}>
+        <div className={`flex items-center ${collapsed ? 'w-full justify-center' : 'gap-2'}`}>
+          {logo && !collapsed && <div className="flex items-center">{logo}</div>}
+          {!collapsed && (
+            <div>
+              <h2 className="text-lg font-bold text-white leading-none">Doner</h2>
+              <p className="text-gray-300 text-xs mt-0.5">Task Management</p>
+            </div>
+          )}
+        </div>
+        <button
+          type="button"
+          aria-label={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
+          title={collapsed ? 'Expand' : 'Collapse'}
+          className="shrink-0 inline-flex items-center justify-center rounded-md border border-white/10 text-white hover:bg-white/10 transition-colors w-8 h-8"
+          onClick={() => setCollapsed((v) => !v)}
+        >
+          {collapsed ? <ChevronRight className="w-4 h-4" /> : <ChevronLeft className="w-4 h-4" />}
+        </button>
       </div>
 
       {/* Navigation */}
@@ -58,7 +76,8 @@ const Sidebar = ({ logo }: SidebarProps) => {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 ${
+                title={item.label}
+                className={`flex items-center ${collapsed ? 'justify-center px-0' : 'gap-3 px-4'} py-3 rounded-lg transition-all duration-200 ${
                   isActive
                     ? 'bg-[#1ed760] text-black font-bold shadow-lg'
                     : 'text-gray-300 hover:bg-white/10 hover:text-white'
@@ -67,7 +86,7 @@ const Sidebar = ({ logo }: SidebarProps) => {
                 <div className={`${isActive ? 'text-black' : 'text-gray-300'}`}>
                   {item.icon}
                 </div>
-                <span className="font-medium">{item.label}</span>
+                {!collapsed && <span className="font-medium">{item.label}</span>}
               </Link>
             );
           })}
@@ -76,9 +95,11 @@ const Sidebar = ({ logo }: SidebarProps) => {
 
       {/* Bottom section */}
       <div className="p-4 border-t border-white/10">
-        <div className="text-center text-gray-400 text-xs">
-          <p>Built with Next.js</p>
-        </div>
+        {!collapsed && (
+          <div className="text-center text-gray-400 text-xs">
+            <p>Built with Next.js</p>
+          </div>
+        )}
       </div>
     </div>
   );

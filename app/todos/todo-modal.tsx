@@ -6,7 +6,7 @@ import Input from '@/app/ui/input';
 import Textarea from '@/app/ui/textarea';
 import TagSelector from '@/app/ui/tag-selector';
 import PrioritySelector from '@/app/ui/priority-selector';
-import { UI_TEXT, BUTTON_VARIANTS, Priority } from '@/app/todos/constants';
+import { UI_TEXT, Priority } from '@/app/todos/constants';
 
 interface TodoModalProps {
   todo: TodoType | null;

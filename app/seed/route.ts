@@ -3,7 +3,7 @@ import postgres from 'postgres';
 const sql = postgres(process.env.POSTGRES_URL!, { ssl: 'require' });
 
 async function createTodoTable() {
-	const data = await sql`
+  const data = await sql`
     CREATE TABLE IF NOT EXISTS todos (
       id SERIAL PRIMARY KEY,
       user_id INT NOT NULL,
@@ -18,11 +18,11 @@ async function createTodoTable() {
     );
   `;
 
-	return data;
+  return data;
 }
 
 async function createTagTable() {
-	const data = await sql`
+  const data = await sql`
     CREATE TABLE IF NOT EXISTS tags (
       id SERIAL PRIMARY KEY,
       user_id INT NOT NULL,
@@ -34,11 +34,11 @@ async function createTagTable() {
     );
   `;
 
-	return data;
+  return data;
 }
 
 async function createUserTable() {
-	const data = await sql`
+  const data = await sql`
     CREATE TABLE IF NOT EXISTS users (
       id SERIAL PRIMARY KEY,
       email VARCHAR(255) NOT NULL,
@@ -48,7 +48,7 @@ async function createUserTable() {
     );
   `;
 
-	return data;
+  return data;
 }
 
 export async function GET() {
@@ -58,8 +58,8 @@ export async function GET() {
   await createTagTable();
 
   try {
-  	return Response.json({ success: true });
+    return Response.json({ success: true });
   } catch (error) {
-  	return Response.json({ error }, { status: 500 });
+    return Response.json({ error }, { status: 500 });
   }
 }
