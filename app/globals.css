@@ -139,3 +139,17 @@ body {
   opacity: 0.6;
   cursor: not-allowed;
 }
+
+/* Sidebar surface: same gradient underneath, with subtle dark overlay that fades into content */
+.sidebar-surface {
+  /* keep underlying page gradient visible */
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.28) 0%,
+    rgba(0, 0, 0, 0.20) 30%,
+    rgba(0, 0, 0, 0.12) 60%,
+    rgba(0, 0, 0, 0.06) 80%,
+    rgba(0, 0, 0, 0.00) 100%
+  );
+  border-right: 1px solid rgba(255, 255, 255, 0.06);
+}

@@ -44,7 +44,7 @@ const Sidebar = ({ logo }: SidebarProps) => {
   ];
 
   return (
-    <div className={`${collapsed ? 'w-20' : 'w-64'} h-screen glass-card flex flex-col transition-all duration-300`}>
+    <div className={`${collapsed ? 'w-20' : 'w-64'} h-screen sidebar-surface flex flex-col transition-all duration-300`}>
       {/* Header */}
       <div className={`p-4 border-b border-white/10 ${collapsed ? 'flex flex-col items-center gap-2' : 'flex items-center justify-between'}`}>
         <div className={`flex items-center ${collapsed ? 'w-full justify-center' : 'gap-2'}`}>
