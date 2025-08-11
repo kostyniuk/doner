@@ -25,7 +25,7 @@ export default function RootLayout({
         <link rel="icon" href={faviconDataUrl} type="image/svg+xml" />
         <link rel="icon" href="/favicon.png" sizes="32x32" type="image/png" />
       </Head>
-      <body className={`${roboto_mono.className} antialiased bg-custom-dark`}>
+      <body className={`${roboto_mono.className} antialiased`}>
         <div className="flex flex-row">
           <Sidebar logo={<Logo className="w-10 h-10 mb-2" />} />
           {children}

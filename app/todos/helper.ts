@@ -2,21 +2,21 @@ import { TODO_STATUSES, TODO_STATUS_DISPLAY_NAMES, TODO_STATUS_COLORS, TodoStatu
 
 export interface Todo {
   id: number;
-  title: string;
+  text: string;
   description?: string;
   status: TodoStatus;
   priority?: Priority;
   tags?: string[];
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt?: Date;
+  updatedAt?: Date;
 }
 
 export interface Tag {
-  id: number;
+  id: string;
   name: string;
   color: string;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt?: Date;
+  updatedAt?: Date;
 }
 
 export const getColumnTodos = (todos: Todo[], status: TodoStatus) => {

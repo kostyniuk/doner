@@ -29,7 +29,7 @@ const TodosPage = () => {
   const statuses = Object.values(TODO_STATUSES);
 
   return (
-    <div className="flex-1 min-h-screen bg-[#121212] text-white p-8">
+    <div className="flex-1 min-h-screen text-white p-8">
       <div className="max-w-7xl mx-auto mt-15">
         {/* Input Section */}
         <TodoInput

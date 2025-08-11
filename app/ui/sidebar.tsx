@@ -41,12 +41,12 @@ const Sidebar = ({ logo }: SidebarProps) => {
   ];
 
   return (
-    <div className="w-64 h-screen bg-[#1f1f1f] border-r border-gray-800 flex flex-col">
+    <div className="w-64 h-screen glass-card flex flex-col">
       {/* Logo/Brand */}
-      <div className="p-6 border-b border-gray-800">
+      <div className="p-6 border-b border-white/10">
         {logo && <div className="flex justify-center items-center mb-2">{logo}</div>}
         <h2 className="text-xl font-bold text-white">Doner</h2>
-        <p className="text-gray-400 text-sm mt-1">Task Management</p>
+        <p className="text-gray-300 text-sm mt-1">Task Management</p>
       </div>
 
       {/* Navigation */}
@@ -61,10 +61,10 @@ const Sidebar = ({ logo }: SidebarProps) => {
                 className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 ${
                   isActive
                     ? 'bg-[#1ed760] text-black font-bold shadow-lg'
-                    : 'text-gray-300 hover:bg-[#2a2a2a] hover:text-white'
+                    : 'text-gray-300 hover:bg-white/10 hover:text-white'
                 }`}
               >
-                <div className={`${isActive ? 'text-black' : 'text-gray-400'}`}>
+                <div className={`${isActive ? 'text-black' : 'text-gray-300'}`}>
                   {item.icon}
                 </div>
                 <span className="font-medium">{item.label}</span>
@@ -75,8 +75,8 @@ const Sidebar = ({ logo }: SidebarProps) => {
       </nav>
 
       {/* Bottom section */}
-      <div className="p-4 border-t border-gray-800">
-        <div className="text-center text-gray-500 text-xs">
+      <div className="p-4 border-t border-white/10">
+        <div className="text-center text-gray-400 text-xs">
           <p>Built with Next.js</p>
         </div>
       </div>

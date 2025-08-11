@@ -28,12 +28,12 @@ const Modal: React.FC<ModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className={`bg-[#1f1f1f] rounded-xl ${sizeClasses[size]} max-h-[90vh] flex flex-col relative ${className}`} style={{ minHeight: 0 }}>
+    <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
+      <div className={`glass-card-modal ${sizeClasses[size]} max-h-[90vh] flex flex-col relative ${className}`} style={{ minHeight: 0 }}>
         {/* Close button always at top right */}
         <button
           onClick={onClose}
-          className="absolute top-0 right-0 p-6 text-gray-400 hover:text-white text-2xl transition-colors z-10"
+          className="absolute top-0 right-0 p-6 text-gray-200 hover:text-white text-2xl transition-colors z-10"
           style={{ lineHeight: 1, marginTop: 9, marginRight: 8 }}
           aria-label="Close"
         >

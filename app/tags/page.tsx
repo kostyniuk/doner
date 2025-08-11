@@ -53,13 +53,13 @@ const TagsPage = () => {
   };
 
   return (
-    <div className="flex-1 min-h-screen bg-[#121212] text-white">
+    <div className="flex-1 min-h-screen text-white">
       <div className="p-8">
         <div className="max-w-4xl mx-auto">
           {/* Header */}
           <div className="mb-8">
             <h1 className="text-4xl font-bold mb-2">Tags</h1>
-            <p className="text-gray-400">
+            <p className="text-gray-300">
               Organize your tasks with custom tags and categories
             </p>
           </div>
@@ -69,17 +69,17 @@ const TagsPage = () => {
             {!isAdding ? (
               <button
                 onClick={() => setIsAdding(true)}
-                className="flex items-center gap-3 p-4 border-2 border-dashed border-gray-600 rounded-lg hover:border-gray-500 transition-colors group"
+                className="glass-card flex items-center gap-3 p-4 border-2 border-dashed border-white/20 rounded-lg hover:border-white/30 transition-colors group"
               >
-                <div className="w-6 h-6 rounded-full border-2 border-gray-600 flex items-center justify-center group-hover:border-gray-500">
-                  <svg className="w-4 h-4 text-gray-600 group-hover:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="w-6 h-6 rounded-full border-2 border-gray-300/50 flex items-center justify-center group-hover:border-gray-300/80">
+                  <svg className="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                   </svg>
                 </div>
-                <span className="text-gray-400 group-hover:text-gray-300">Add new tag</span>
+                <span className="text-gray-200">Add new tag</span>
               </button>
             ) : (
-              <div className="p-4 bg-[#1f1f1f] rounded-lg space-y-4">
+              <div className="glass-card p-4 space-y-4">
                 <div className="flex items-center gap-3">
                   <input
                     type="text"
@@ -87,20 +87,20 @@ const TagsPage = () => {
                     onChange={(e) => setNewTagName(e.target.value)}
                     onKeyPress={(e) => e.key === 'Enter' && addTag()}
                     placeholder="Tag name"
-                    className="flex-1 bg-[#2a2a2a] text-white placeholder-gray-500 outline-none px-4 py-2 rounded-md"
+                    className="flex-1 bg-transparent text-white placeholder-gray-400 outline-none px-4 py-2 rounded-md border border-transparent focus:ring-0"
                     autoFocus
                   />
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-sm text-gray-400">Choose color:</label>
+                  <label className="text-sm text-gray-300">Choose color:</label>
                   <div className="flex gap-2">
                     {colors.map((color) => (
                       <button
                         key={color}
                         onClick={() => setSelectedColor(color)}
                         className={`w-8 h-8 rounded-full ${color} ${
-                          selectedColor === color ? 'ring-2 ring-white ring-offset-2 ring-offset-[#1f1f1f]' : ''
+                          selectedColor === color ? 'ring-2 ring-white ring-offset-2 ring-offset-transparent' : ''
                         }`}
                       />
                     ))}
@@ -120,7 +120,7 @@ const TagsPage = () => {
                       setNewTagName('');
                       setSelectedColor('bg-blue-500');
                     }}
-                    className="px-4 py-2 text-gray-400 hover:text-white transition-colors text-sm"
+                    className="px-4 py-2 text-gray-300 hover:text-white transition-colors text-sm"
                   >
                     Cancel
                   </button>
@@ -147,36 +147,36 @@ const TagsPage = () => {
           {/* Empty State */}
           {tags.length === 0 && (
             <div className="text-center py-16">
-              <div className="w-16 h-16 bg-gray-800 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-8 h-8 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="w-16 h-16 bg-gray-800/60 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold mb-2 text-gray-400">No tags yet</h3>
-              <p className="text-gray-500">Create your first tag to organize your tasks</p>
+              <h3 className="text-xl font-semibold mb-2 text-gray-300">No tags yet</h3>
+              <p className="text-gray-400">Create your first tag to organize your tasks</p>
             </div>
           )}
 
           {/* Statistics */}
           {tags.length > 0 && (
-            <div className="mt-12 p-6 bg-[#1f1f1f] rounded-lg">
+            <div className="mt-12 glass-card p-6">
               <h3 className="text-lg font-semibold mb-4">Statistics</h3>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+              <div className="grid grid-cols-1 md-grid-cols-3 gap-4 text-center">
                 <div>
                   <div className="text-2xl font-bold text-blue-400">{tags.length}</div>
-                  <div className="text-gray-400 text-sm">Total Tags</div>
+                  <div className="text-gray-300 text-sm">Total Tags</div>
                 </div>
                 <div>
                   <div className="text-2xl font-bold text-green-400">
                     {tags.reduce((sum, tag) => sum + tag.count, 0)}
                   </div>
-                  <div className="text-gray-400 text-sm">Tagged Tasks</div>
+                  <div className="text-gray-300 text-sm">Tagged Tasks</div>
                 </div>
                 <div>
                   <div className="text-2xl font-bold text-purple-400">
                     {tags.filter(tag => tag.count > 0).length}
                   </div>
-                  <div className="text-gray-400 text-sm">Active Tags</div>
+                  <div className="text-gray-300 text-sm">Active Tags</div>
                 </div>
               </div>
             </div>

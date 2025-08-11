@@ -66,20 +66,18 @@ const TodoInput: React.FC<TodoInputProps> = ({ onAddTodo, tags, className = '' }
 
   return (
     <div className={`space-y-4 ${className}`}>
-      {/* Input Section */}
-      <div className="flex gap-4">
-        <div className="flex-1 flex items-center gap-2 bg-[#1f1f1f] rounded-xl px-4">
-          <span className="text-2xl text-gray-400">+</span>
-          <Input
-            value={inputValue}
-            onChange={setInputValue}
-            onKeyPress={handleKeyPress}
-            placeholder={UI_TEXT.ADD_TASK}
-            className="flex-1 bg-transparent border-none shadow-none"
-            bgClassName="bg-[#1f1f1f]"
-            noBorder={true}
-          />
-        </div>
+      {/* Input + Actions in one row */}
+      <div className="glass-card flex items-center gap-3 px-4 py-2">
+        <span className="text-2xl text-gray-300">+</span>
+        <Input
+          value={inputValue}
+          onChange={setInputValue}
+          onKeyPress={handleKeyPress}
+          placeholder={UI_TEXT.ADD_TASK}
+          className="flex-1 bg-transparent border-none shadow-none"
+          bgClassName="bg-transparent"
+          noBorder={true}
+        />
         <Button
           onClick={() => setShowDescription(!showDescription)}
           variant={BUTTON_VARIANTS.GHOST}
@@ -105,7 +103,8 @@ const TodoInput: React.FC<TodoInputProps> = ({ onAddTodo, tags, className = '' }
           onChange={setDescriptionValue}
           placeholder={UI_TEXT.ENTER_DESCRIPTION}
           rows={4}
-          className="bg-[#1f1f1f] rounded-xl p-4"
+          className="glass-card p-4"
+          transparent
         />
       )}
 
@@ -128,14 +127,14 @@ const TodoInput: React.FC<TodoInputProps> = ({ onAddTodo, tags, className = '' }
               placeholder="New tag name"
               className="w-32 text-sm"
               noBorder={true}
-              bgClassName="bg-[#1f1f1f]"
+              bgClassName="bg-transparent"
             />
           ) : (
             <Button
               onClick={() => setShowNewTagInput(true)}
               variant={BUTTON_VARIANTS.GHOST}
               size={BUTTON_SIZES.SM}
-              className="px-3 py-1 rounded-full text-sm cursor-pointer text-[#9ca3af] bg-[#2a2a2a] hover:bg-[#3a3a3a]"
+              className="px-3 py-1 rounded-full text-sm cursor-pointer text-[#9ca3af] bg-white/10 hover:bg-white/20"
             >
               <span className="text-2xl leading-none">+</span>
             </Button>

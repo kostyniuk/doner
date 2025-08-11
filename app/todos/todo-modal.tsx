@@ -88,7 +88,7 @@ const TodoModal: React.FC<TodoModalProps> = ({
             onChange={setEditedText}
             placeholder={UI_TEXT.ENTER_TASK_NAME}
             className="text-xl font-bold shadow-none px-0 py-0 m-0 w-full focus:ring-0 focus:border-transparent"
-            bgClassName="bg-[#1f1f1f]"
+            bgClassName="bg-transparent"
             noBorder={true}
           />
         </div>
@@ -117,24 +117,26 @@ const TodoModal: React.FC<TodoModalProps> = ({
           label={UI_TEXT.DESCRIPTION}
           placeholder={UI_TEXT.ENTER_DESCRIPTION}
           rows={6}
+          className="glass-card p-2"
+          transparent
         />
 
         {/* Actions */}
         <div className="flex gap-3 pt-4">
           <Button
-            variant={BUTTON_VARIANTS.PRIMARY}
+            variant="glassDanger"
+            onClick={handleDelete}
+            className="flex-1"
+          >
+            {UI_TEXT.DELETE}
+          </Button>
+          <Button
+            variant="glass"
             onClick={handleSave}
             disabled={editedText.trim() === ''}
             className="flex-1"
           >
             {UI_TEXT.SAVE}
-          </Button>
-          <Button
-            variant={BUTTON_VARIANTS.DANGER}
-            onClick={handleDelete}
-            className="flex-1"
-          >
-            {UI_TEXT.DELETE}
           </Button>
         </div>
       </div>
